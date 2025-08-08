@@ -38,18 +38,25 @@ function safe(nv, key) {
 /** Plantillas de correo */
 const TEMPLATES = {
   'Reparación': {
-    subject: pdv => `🛠 Reparación en ${pdv} – ${SYSTEM_NAME}`,
+    subject: pdv => `Reparación en ${pdv} – ${SYSTEM_NAME}`,
     buildBody: ({ pdv, fechaVisita, nv, sellos }) =>
       `Se ha realizado una intervención técnica por motivo de Reparación.\n\n` +
-      `📍 Punto de Venta: ${pdv}\n` +
-      `🗓 Fecha de intervención: ${fechaVisita}\n\n` +
-      `🔧 Incidencia reportada:\n${safe(nv, 'Rep. Incidencia reportada')}\n\n` +
-      `🧠 Diagnóstico de la falla:\n${safe(nv, 'Rep. Diagnóstico de la falla')}\n\n` +
-      `✅ Solución o acción realizada:\n${safe(nv, 'Rep. Solución o acción realizada')}\n\n` +
-      `🔒 Sellos nuevos instalados:\n` +
-      sellos.map(s => `• ${s.ubicacion}: ${s.sello}`).join('\n') +
-      `\n\nEste correo fue generado automáticamente por el ${SYSTEM_NAME}.\n\n` +
-      `— Nova 🤖, asistente virtual de UlisesGC`
+      `===== Punto de Venta =====\n\n` +
+      `➤ ${pdv}\n` +
+      `----------------------------------------\n` +
+      `===== Fecha de intervención =====\n\n` +
+      `➤ ${fechaVisita}\n` +
+      `----------------------------------------\n` +
+      `===== Incidencia reportada =====\n` +
+      `• ${safe(nv, 'Rep. Incidencia reportada')}\n\n` +
+      `===== Diagnóstico de la falla =====\n` +
+      `• ${safe(nv, 'Rep. Diagnóstico de la falla')}\n\n` +
+      `===== Solución o acción realizada =====\n` + 
+      `• ${safe(nv, 'Rep. Solución o acción realizada')}\n` +
+      `----------------------------------------\n` +
+      `===== Sellos nuevos instalados =====\n` +
+      sellos.map(s => `➤ ${s.ubicacion}: ${s.sello}`).join('\n') +
+      `\n\n— Centro Técnico GZ · Asistente: Nova`
   },
 
   'Cambio de pieza': {
