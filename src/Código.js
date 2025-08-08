@@ -1,3 +1,4 @@
+/* exported onFormSubmit, getUltimoSelloNuevo, SH_RESPUESTAS */
 /** Prueba de push Ulises 07/08/2025
  * Apps Script – Historial y Estado de Sellos + envío de correos
  * Autor: Nova (ChatGPT) · Proyecto Ulises – 1 ago 2025

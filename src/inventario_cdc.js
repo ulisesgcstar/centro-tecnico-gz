@@ -1,3 +1,4 @@
+/* exported onEdit, afterSubmitInventario */
 /******************************************************************
  * 1) Captura manual — escribir o arrastrar códigos en Inventario 
  * respaldo 29/07/25. Este codigo funciona con la alerta de sello duplicado.
