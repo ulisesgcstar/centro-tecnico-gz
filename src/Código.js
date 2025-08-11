@@ -58,81 +58,107 @@ const TEMPLATES = {
   },
 
   'Cambio de pieza': {
-    subject: pdv => `🔧 Cambio de pieza en ${pdv} – ${SYSTEM_NAME}`,
+    subject: pdv => `Cambio de pieza en ${pdv} – ${SYSTEM_NAME}`,
     buildBody: ({ pdv, fechaVisita, nv, sellos }) =>
       `Se ha realizado una intervención técnica por motivo de Cambio de pieza.\n\n` +
-      `\t Punto de Venta \n` +
-      `${pdv}\n` +
-      `🗓 Fecha de intervención: ${fechaVisita}\n\n` +
-      `⚠️ ID del componente dañado:\n${safe(nv, 'ID del componente Dañado')}\n\n` +
-      `🔄 Acción sobre el componente dañado:\n${safe(nv, 'Acción sobre el componente dañado.')}\n\n` +
-      `🆕 Componente instalado:\n${safe(nv, '¿Qué componente se instalará?')}\n\n` +
-      `📊 Estado del componente:\n${safe(nv, '¿Cuál es el estado del componente?')}\n\n` +
-      `✅ Resultado final:\n${safe(nv, 'Cdp. Resultado final')}\n\n` +
-      `🔒 Sellos nuevos instalados:\n` +
-      sellos.map(s => `• ${s.ubicacion}: ${s.sello}`).join('\n') +
-      `\n\nEste correo fue generado automáticamente por el ${SYSTEM_NAME}.\n\n` +
-      `— Nova 🤖, asistente virtual de UlisesGC`
+      `________________________________________\n` +
+      `\t Punto de Venta \n\n` +
+      `➤ ${pdv}\n` +
+      `________________________________________\n` +
+      `\t ID del componente dañado \n` +
+      `• ${safe(nv, 'ID del componente Dañado')}\n\n` +
+      `\t Acción sobre el componente dañado \n` +
+      `• ${safe(nv, 'Acción sobre el componente dañado.')}\n\n` +
+      `\t Componente instalado \n` +
+      `• ${safe(nv, 'Selecciona un componente')}\n\n` +
+      `\t Estado del componente \n` +
+      `• ${safe(nv, '¿Cuál es el estado del componente?')}\n\n` +
+      `\t Resultado final \n` +
+      `• ${safe(nv, 'Cdp. Resultado final')}\n` +
+      `________________________________________\n` +
+      `\t Sellos nuevos instalados \n` +
+      sellos.map(s => `➤ ${s.ubicacion}: ${s.sello}`).join('\n') +
+      `\n\n— Centro Técnico GZ · Asistente: Nova`
   },
 
   'Chequeo de Impresora': {
-    subject: pdv => `🖨️ Chequeo de impresora en ${pdv} – ${SYSTEM_NAME}`,
+    subject: pdv => `Chequeo de impresora en ${pdv} – ${SYSTEM_NAME}`,
     buildBody: ({ pdv, fechaVisita, nv, sellos }) =>
       `Se ha realizado una intervención técnica por motivo de Chequeo de impresora.\n\n` +
-      `📍 Punto de Venta: ${pdv}\n` +
-      `🗓 Fecha de intervención: ${fechaVisita}\n\n` +
-      `⚠️ Incidencia reportada:\n${safe(nv, 'Imp. Incidencia reportada')}\n\n` +
-      `🧠 Diagnóstico de la falla:\n${safe(nv, 'Imp. Diagnóstico de la falla')}\n\n` +
-      `✅ Solución o acción realizada:\n${safe(nv, 'Imp. Solución o acción realizada')}\n\n` +
-      `🔒 Sellos nuevos instalados:\n` +
-      sellos.map(s => `• ${s.ubicacion}: ${s.sello}`).join('\n') +
-      `\n\nEste correo fue generado automáticamente por el ${SYSTEM_NAME}.\n\n` +
-      `— Nova 🤖, asistente virtual de UlisesGC`
+      `________________________________________\n` +
+      `\t Punto de Venta \n\n` +
+      `➤ ${pdv}\n` +
+      `________________________________________\n` +
+      `\t Incidencia reportada \n` +
+      `• ${safe(nv, 'Imp. Incidencia reportada')}\n\n` +
+      `\t Diagnóstico de la falla \n` +
+      `• ${safe(nv, 'Imp. Diagnóstico de la falla')}\n\n` +
+      `\t Solución o acción realizada \n` +
+      `• ${safe(nv, 'Imp. Solución o acción realizada')}\n` +
+      `________________________________________\n` +
+      `\t Sellos nuevos instalados \n` +
+      sellos.map(s => `➤ ${s.ubicacion}: ${s.sello}`).join('\n') +
+      `\n\n— Centro Técnico GZ · Asistente: Nova`
   },
 
   'Revisión': {
-    subject: pdv => `🔍 Revisión técnica en ${pdv} – ${SYSTEM_NAME}`,
+    subject: pdv => `Revisión técnica en ${pdv} – ${SYSTEM_NAME}`,
     buildBody: ({ pdv, fechaVisita, nv, sellos }) =>
       `Se ha realizado una intervención técnica por motivo de Revisión.\n\n` +
-      `📍 Punto de Venta: ${pdv}\n` +
-      `🗓 Fecha de intervención: ${fechaVisita}\n\n` +
-      `⚠️ Incidencia reportada:\n${safe(nv, 'Rev. Incidencia reportada')}\n\n` +
-      `🧠 Diagnóstico:\n${safe(nv, 'Rev. Diagnóstico')}\n\n` +
-      `✅ Solución o acción realizada:\n${safe(nv, 'Rev. Solución o acción realizada')}\n\n` +
-      `🔒 Sellos nuevos instalados:\n` +
-      sellos.map(s => `• ${s.ubicacion}: ${s.sello}`).join('\n') +
-      `\n\nEste correo fue generado automáticamente por el ${SYSTEM_NAME}.\n\n` +
-      `— Nova 🤖, asistente virtual de UlisesGC`
+      `________________________________________\n` +
+      `\t Punto de Venta \n\n` +
+      `➤ ${pdv}\n` +
+      `________________________________________\n` +
+      `\t Incidencia reportada \n` +
+      `• ${safe(nv, 'Rev. Incidencia reportada')}\n\n` +
+      `\t Diagnóstico \n` +
+      `• ${safe(nv, 'Rev. Diagnóstico')}\n\n` +
+      `\t Solución o acción realizada \n` +
+      `• ${safe(nv, 'Rev. Solución o acción realizada')}\n` +
+      `________________________________________\n` +
+      `\t Sellos nuevos instalados \n` +
+      sellos.map(s => `➤ ${s.ubicacion}: ${s.sello}`).join('\n') +
+      `\n\n— Centro Técnico GZ · Asistente: Nova`
   },
 
   'Nueva Estación': {
-    subject: pdv => `🚀 Nueva Estación en ${pdv} – ${SYSTEM_NAME}`,
+    subject: pdv => `Nueva Estación en ${pdv} – ${SYSTEM_NAME}`,
     buildBody: ({ pdv, fechaVisita, nv, sellos }) =>
       `Se ha realizado una intervención técnica por motivo de Nueva Estación.\n\n` +
-      `📍 Punto de Venta: ${pdv}\n` +
-      `🗓 Fecha de intervención: ${fechaVisita}\n\n` +
-      `📝 Descripción de la acción realizada:\n${safe(nv, 'Nva. Describe la acción realizada')}\n\n` +
-      `🔒 Sellos nuevos instalados:\n` +
-      sellos.map(s => `• ${s.ubicacion}: ${s.sello}`).join('\n') +
-      `\n\nEste correo fue generado automáticamente por el ${SYSTEM_NAME}.\n\n` +
-      `— Nova 🤖, asistente virtual de UlisesGC`
+      `________________________________________\n` +
+      `\t Punto de Venta \n\n` +
+      `➤ ${pdv}\n` +
+      `________________________________________\n` +
+      `\t Descripción de la acción realizada \n` +
+      `• ${safe(nv, 'Nva. Describe la acción realizada')}\n` +
+      `________________________________________\n` +
+      `\t Sellos nuevos instalados \n` +
+      sellos.map(s => `➤ ${s.ubicacion}: ${s.sello}`).join('\n') +
+      `\n\n— Centro Técnico GZ · Asistente: Nova`
   },
 
   'Accesos y configuración': {
-    subject: pdv => `🔑 Accesos y configuración en ${pdv} – ${SYSTEM_NAME}`,
+    subject: pdv => `Accesos y configuración en ${pdv} – ${SYSTEM_NAME}`,
     buildBody: ({ pdv, fechaVisita, nv, sellos }) =>
       `Se ha realizado una intervención técnica por motivo de Accesos y configuración.\n\n` +
-      `📍 Punto de Venta: ${pdv}\n` +
-      `🗓 Fecha de intervención: ${fechaVisita}\n\n` +
-      `🔐 Tipo de acceso:\n${safe(nv, 'Acc. Tipo de Acceso')}\n\n` +
-      `📋 Motivo del acceso:\n${safe(nv, 'Acc. Motivo de los accesos')}\n\n` +
-      `💻 Configuración en Programador:\n${safe(nv, 'Acc. Configuración realizada en Programador')}\n\n` +
-      `🖥 Configuración en Supervisor:\n${safe(nv, 'Acc. Configuración realizada en Supervisor')}\n\n` +
-      `🖨 ¿Realiza reimpresión?:\n${safe(nv, 'Acc. ¿Realiza Reimpresión?')}\n\n` +
-      `🔒 Sellos nuevos instalados:\n` +
-      sellos.map(s => `• ${s.ubicacion}: ${s.sello}`).join('\n') +
-      `\n\nEste correo fue generado automáticamente por el ${SYSTEM_NAME}.\n\n` +
-      `— Nova 🤖, asistente virtual de UlisesGC`
+      `________________________________________\n` +
+      `\t Punto de Venta \n\n` +
+      `➤ ${pdv}\n` +
+      `________________________________________\n` +
+      `\t Tipo de acceso \n` +
+      `• ${safe(nv, 'Acc. Tipo de Acceso')}\n\n` +
+      `\t Motivo del acceso \n` +
+      `• ${safe(nv, 'Acc. Motivo de los accesos')}\n\n` +
+      `\t Configuración en Programador \n` +
+      `• ${safe(nv, 'Acc. Configuración realizada en Programador')}\n\n` +
+      `\t Configuración en Supervisor \n` +
+      `• ${safe(nv, 'Acc. Configuración realizada en Supervisor')}\n\n` +
+      `\t ¿Realiza reimpresión? \n` +
+      `• ${safe(nv, 'Acc. ¿Realiza Reimpresión?')}\n` +
+      `________________________________________\n` +
+      `\t Sellos nuevos instalados \n` +
+      sellos.map(s => `➤ ${s.ubicacion}: ${s.sello}`).join('\n') +
+      `\n\n— Centro Técnico GZ · Asistente: Nova`
   }
 };
 
