@@ -41,20 +41,18 @@ const TEMPLATES = {
     subject: pdv => `Reparación en ${pdv} – ${SYSTEM_NAME}`,
     buildBody: ({ pdv, fechaVisita, nv, sellos }) =>
       `Se ha realizado una intervención técnica por motivo de Reparación.\n\n` +
-      `===== Punto de Venta =====\n\n` +
+      `________________________________________\n` +
+      `\t Punto de Venta \n\n` +
       `➤ ${pdv}\n` +
-      `----------------------------------------\n` +
-      `===== Fecha de intervención =====\n\n` +
-      `➤ ${fechaVisita}\n` +
-      `----------------------------------------\n` +
-      `===== Incidencia reportada =====\n` +
+      `________________________________________\n` +
+      `\t Incidencia reportada \n` +
       `• ${safe(nv, 'Rep. Incidencia reportada')}\n\n` +
-      `===== Diagnóstico de la falla =====\n` +
+      `\t Diagnóstico de la falla \n` +
       `• ${safe(nv, 'Rep. Diagnóstico de la falla')}\n\n` +
-      `===== Solución o acción realizada =====\n` + 
+      `\t Solución o acción realizada \n` + 
       `• ${safe(nv, 'Rep. Solución o acción realizada')}\n` +
-      `----------------------------------------\n` +
-      `===== Sellos nuevos instalados =====\n` +
+      `________________________________________\n` +
+      `\t Sellos nuevos instalados \n` +
       sellos.map(s => `➤ ${s.ubicacion}: ${s.sello}`).join('\n') +
       `\n\n— Centro Técnico GZ · Asistente: Nova`
   },
@@ -63,7 +61,8 @@ const TEMPLATES = {
     subject: pdv => `🔧 Cambio de pieza en ${pdv} – ${SYSTEM_NAME}`,
     buildBody: ({ pdv, fechaVisita, nv, sellos }) =>
       `Se ha realizado una intervención técnica por motivo de Cambio de pieza.\n\n` +
-      `📍 Punto de Venta: ${pdv}\n` +
+      `\t Punto de Venta \n` +
+      `${pdv}\n` +
       `🗓 Fecha de intervención: ${fechaVisita}\n\n` +
       `⚠️ ID del componente dañado:\n${safe(nv, 'ID del componente Dañado')}\n\n` +
       `🔄 Acción sobre el componente dañado:\n${safe(nv, 'Acción sobre el componente dañado.')}\n\n` +
