@@ -198,6 +198,48 @@ const TEMPLATES = {
         : ''
       ) +
       `\n\n— Centro Técnico GZ · Asistente: Nova`
+  },
+
+  'Apoyo a técnicos': {
+    subject: pdv => `Apoyo a técnicos en ${pdv} – ${SYSTEM_NAME}`,
+    buildBody: ({ pdv, fechaVisita, nv, sellos }) =>
+      `Se ha realizado una intervención técnica por motivo de Apoyo a técnicos.\n\n` +
+      `________________________________________\n` +
+      `\t Punto de Venta \n\n` +
+      `➤ ${pdv}\n` +
+      `________________________________________\n` +
+      `\t Descripción de la actividad realizada \n` +
+      `• ${safe(nv, 'Colab. Descripción')}\n` +
+      (sellos && sellos.length
+        ? `________________________________________\n` +
+          `\t Sellos nuevos instalados \n` +
+          sellos.map(s => `➤ ${s.ubicacion}: ${s.sello}`).join('\n') + '\n'
+        : ''
+      ) +
+      `\n\n— Centro Técnico GZ · Asistente: Nova`
+  },
+
+  'Problemas de Comunicación': {
+    subject: pdv => `Problemas de Comunicación en ${pdv} – ${SYSTEM_NAME}`,
+    buildBody: ({ pdv, fechaVisita, nv, sellos }) =>
+      `Se ha realizado una intervención técnica por motivo de Problemas de Comunicación.\n\n` +
+      `________________________________________\n` +
+      `\t Punto de Venta \n\n` +
+      `➤ ${pdv}\n` +
+      `________________________________________\n` +
+      `\t Motivo de la revisión \n` +
+      `• ${safe(nv, 'Com. Motivo de la revisión')}\n\n` +
+      `\t Diagnóstico \n` +
+      `• ${safe(nv, 'Com. Diagnostico')}\n\n` +
+      `\t Solución o acción realizada \n` +
+      `• ${safe(nv, 'Com. Solución o acción realizada')}\n` +
+      (sellos && sellos.length
+        ? `________________________________________\n` +
+          `\t Sellos nuevos instalados \n` +
+          sellos.map(s => `➤ ${s.ubicacion}: ${s.sello}`).join('\n') + '\n'
+        : ''
+      ) +
+      `\n\n— Centro Técnico GZ · Asistente: Nova`
   }
 };
 
