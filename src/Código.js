@@ -51,9 +51,12 @@ const TEMPLATES = {
       `• ${safe(nv, 'Rep. Diagnóstico de la falla')}\n\n` +
       `\t Solución o acción realizada \n` + 
       `• ${safe(nv, 'Rep. Solución o acción realizada')}\n` +
-      `________________________________________\n` +
-      `\t Sellos nuevos instalados \n` +
-      sellos.map(s => `➤ ${s.ubicacion}: ${s.sello}`).join('\n') +
+      (sellos && sellos.length
+        ? `________________________________________\n` +
+          `\t Sellos nuevos instalados \n` +
+          sellos.map(s => `➤ ${s.ubicacion}: ${s.sello}`).join('\n') + '\n'
+        : ''
+      ) +
       `\n\n— Centro Técnico GZ · Asistente: Nova`
   },
 
@@ -75,9 +78,12 @@ const TEMPLATES = {
       `• ${safe(nv, '¿Cuál es el estado del componente?')}\n\n` +
       `\t Resultado final \n` +
       `• ${safe(nv, 'Cdp. Resultado final')}\n` +
-      `________________________________________\n` +
-      `\t Sellos nuevos instalados \n` +
-      sellos.map(s => `➤ ${s.ubicacion}: ${s.sello}`).join('\n') +
+      (sellos && sellos.length
+        ? `________________________________________\n` +
+          `\t Sellos nuevos instalados \n` +
+          sellos.map(s => `➤ ${s.ubicacion}: ${s.sello}`).join('\n') + '\n'
+        : ''
+      ) +
       `\n\n— Centro Técnico GZ · Asistente: Nova`
   },
 
@@ -95,9 +101,12 @@ const TEMPLATES = {
       `• ${safe(nv, 'Imp. Diagnóstico de la falla')}\n\n` +
       `\t Solución o acción realizada \n` +
       `• ${safe(nv, 'Imp. Solución o acción realizada')}\n` +
-      `________________________________________\n` +
-      `\t Sellos nuevos instalados \n` +
-      sellos.map(s => `➤ ${s.ubicacion}: ${s.sello}`).join('\n') +
+      (sellos && sellos.length
+        ? `________________________________________\n` +
+          `\t Sellos nuevos instalados \n` +
+          sellos.map(s => `➤ ${s.ubicacion}: ${s.sello}`).join('\n') + '\n'
+        : ''
+      ) +
       `\n\n— Centro Técnico GZ · Asistente: Nova`
   },
 
@@ -115,9 +124,12 @@ const TEMPLATES = {
       `• ${safe(nv, 'Rev. Diagnóstico')}\n\n` +
       `\t Solución o acción realizada \n` +
       `• ${safe(nv, 'Rev. Solución o acción realizada')}\n` +
-      `________________________________________\n` +
-      `\t Sellos nuevos instalados \n` +
-      sellos.map(s => `➤ ${s.ubicacion}: ${s.sello}`).join('\n') +
+      (sellos && sellos.length
+        ? `________________________________________\n` +
+          `\t Sellos nuevos instalados \n` +
+          sellos.map(s => `➤ ${s.ubicacion}: ${s.sello}`).join('\n') + '\n'
+        : ''
+      ) +
       `\n\n— Centro Técnico GZ · Asistente: Nova`
   },
 
@@ -131,9 +143,12 @@ const TEMPLATES = {
       `________________________________________\n` +
       `\t Descripción de la acción realizada \n` +
       `• ${safe(nv, 'Nva. Describe la acción realizada')}\n` +
-      `________________________________________\n` +
-      `\t Sellos nuevos instalados \n` +
-      sellos.map(s => `➤ ${s.ubicacion}: ${s.sello}`).join('\n') +
+      (sellos && sellos.length
+        ? `________________________________________\n` +
+          `\t Sellos nuevos instalados \n` +
+          sellos.map(s => `➤ ${s.ubicacion}: ${s.sello}`).join('\n') + '\n'
+        : ''
+      ) +
       `\n\n— Centro Técnico GZ · Asistente: Nova`
   },
 
@@ -155,9 +170,33 @@ const TEMPLATES = {
       `• ${safe(nv, 'Acc. Configuración realizada en Supervisor')}\n\n` +
       `\t ¿Realiza reimpresión? \n` +
       `• ${safe(nv, 'Acc. ¿Realiza Reimpresión?')}\n` +
+      (sellos && sellos.length
+        ? `________________________________________\n` +
+          `\t Sellos nuevos instalados \n` +
+          sellos.map(s => `➤ ${s.ubicacion}: ${s.sello}`).join('\n') + '\n'
+        : ''
+      ) +
+      `\n\n— Centro Técnico GZ · Asistente: Nova`
+  },
+
+  'Instalación / Reinstalación': {
+    subject: pdv => `Instalación / Reinstalación en ${pdv} – ${SYSTEM_NAME}`,
+    buildBody: ({ pdv, fechaVisita, nv, sellos }) =>
+      `Se ha realizado una intervención técnica por motivo de Instalación / Reinstalación.\n\n` +
       `________________________________________\n` +
-      `\t Sellos nuevos instalados \n` +
-      sellos.map(s => `➤ ${s.ubicacion}: ${s.sello}`).join('\n') +
+      `\t Punto de Venta \n\n` +
+      `➤ ${pdv}\n` +
+      `________________________________________\n` +
+      `\t Tipo de instalación \n` +
+      `• ${safe(nv, '¿Tipo de instalación?')}\n\n` +
+      `\t Descripción de la actividad realizada \n` +
+      `• ${safe(nv, 'Describe la actividad que se realizó')}\n` +
+      (sellos && sellos.length
+        ? `________________________________________\n` +
+          `\t Sellos nuevos instalados \n` +
+          sellos.map(s => `➤ ${s.ubicacion}: ${s.sello}`).join('\n') + '\n'
+        : ''
+      ) +
       `\n\n— Centro Técnico GZ · Asistente: Nova`
   }
 };
@@ -216,7 +255,7 @@ function onFormSubmit(e) {
   });
 
   // Prepara y envía correo
-  const DESTINATARIO = 'jguadarrama.c@tomza.com,Facturacion.Colotlan@tomza.com';
+  const DESTINATARIO = 'jguadarrama.c@tomza.com';
   Logger.log(`🕵️‍♂️ Enviando correo para motivo "${motivo}" a: ${DESTINATARIO}`);
 
   const template = TEMPLATES[motivo];
